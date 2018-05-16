@@ -17,13 +17,13 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         path_spec = options['path_spec']
         for path in glob(path_spec):
-            print "loading %s" % path
+            print("loading %s" % path)
             with open(path) as csv_file:
                 reader = csv.DictReader(csv_file)
                 for record in reader:
                     # Last load took 14 minutes, this will add a visual indicator
                     #  that something is happening
-                    print record['SCHOOL_ID']
+                    print(record['SCHOOL_ID'])
                     aliases = set()
                     primary_school_name = record.get("SCHOOL")
                     aliases.add(primary_school_name)
