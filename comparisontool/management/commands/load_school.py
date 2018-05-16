@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 from glob import glob
 from json import dumps
 import csv
@@ -20,10 +22,11 @@ class Command(BaseCommand):
             print("loading %s" % path)
             with open(path) as csv_file:
                 reader = csv.DictReader(csv_file)
+                print("Schools loaded: ", end="")
                 for record in reader:
                     # Last load took 14 minutes, this will add a visual indicator
                     #  that something is happening
-                    print(record['SCHOOL_ID'])
+                    print(record['SCHOOL_ID'], end=", ")
                     aliases = set()
                     primary_school_name = record.get("SCHOOL")
                     aliases.add(primary_school_name)
@@ -45,3 +48,4 @@ class Command(BaseCommand):
                                 alias=alias_str,
                                 is_primary=(alias_str == primary_school_name))
                         alias.save()
+                print("... done!")
