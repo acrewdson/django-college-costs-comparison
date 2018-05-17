@@ -10,7 +10,6 @@ from comparisontool.models import *
 
 
 class Command(BaseCommand):
-    args = '<path>'
     help = 'Load the specified CSV into the schools database'
 
     def add_arguments(self, parser):
