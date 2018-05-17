@@ -1,3 +1,6 @@
+from __future__ import absolute_import
+from __future__ import print_function
+
 from glob import glob
 from json import dumps
 import csv
@@ -16,7 +19,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         path_spec = options['path_spec']
         for path in glob(path_spec):
-            print("loading %s" % path)
+            print("loading BAH file:", path)
             with open(path) as csv_file:
                 reader = csv.DictReader(csv_file)
                 BAHRate.objects.all().delete()

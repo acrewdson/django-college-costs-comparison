@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from __future__ import print_function
 
 from glob import glob
@@ -18,7 +19,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         path_spec = options['path_spec']
         for path in glob(path_spec):
-            print("loading %s" % path)
+            print("loading schools:", path)
             with open(path) as csv_file:
                 reader = csv.DictReader(csv_file)
                 print("Schools loaded: ", end="")
